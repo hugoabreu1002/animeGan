@@ -55,6 +55,10 @@ Then go to [https://pytorch.org/](https://pytorch.org/) and install the correct 
 
 ## Usage
 
+### COLAB
+
+https://colab.research.google.com/drive/1yjI5S27PA7uBaqexk8noeXhzPBVEzfps?usp=sharing
+
 ### Train
 ```
 python3 train.py --help

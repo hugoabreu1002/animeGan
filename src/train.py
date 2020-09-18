@@ -4,7 +4,8 @@ import torch.optim as optim
 import torchvision.utils as vutils
 import os, tqdm, re, glob
 from argparse import ArgumentParser
-from datasets import train_loader
+from datasets import DataLoader
+from datasets import A_train_dataset
 from model.ACGAN import Generator, Discriminator
 from utils_ import *
 
@@ -34,8 +35,8 @@ def main():
     batch_size = args.batch_size
     iterations =  args.iterations
     device = 'cpu'
-    if torch.cuda.is_available():
-        device = 'cuda'
+    # if torch.cuda.is_available():
+    #     device = 'cuda'
     
     hair_classes, eye_classes = len(hair), len(eyes)
     num_classes = hair_classes + eye_classes
@@ -77,6 +78,8 @@ def main():
         print("epoch start: ", start_step)
 
     criterion = torch.nn.BCELoss()
+
+    train_loader = DataLoader(A_train_dataset, batch_size=batch_size, num_workers=16, shuffle=True, drop_last=True)
 
     ########## Start Training ##########
     for epoch in tqdm.trange(iterations, desc='Epoch Loop'):

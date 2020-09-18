@@ -109,8 +109,14 @@ def generate_by_attributes(model, device, latent_dim, hair_classes, eye_classes,
     
     hair_tag = torch.zeros(64, hair_classes).to(device)
     eye_tag = torch.zeros(64, eye_classes).to(device)
-    hair_class = hair_dict[hair_color]
-    eye_class = eye_dict[eye_color]
+    if hair_color == None:
+        hair_class = np.random.randint(0,hair_classes)
+    else:
+        hair_class = hair_dict[hair_color]
+    if eye_color == None:
+        eye_class = np.random.randint(0,eye_classes)
+    else:
+        eye_class = eye_dict[eye_color]
     for i in range(64):
         hair_tag[i][hair_class], eye_tag[i][eye_class] = 1, 1
 

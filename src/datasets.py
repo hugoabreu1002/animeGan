@@ -25,6 +25,7 @@ class AttrDataset(Dataset):
         return len(self.attr_list)
 
     def __getitem__(self, idx):
+        print(attr_list.head())
         img_name = os.path.join(self.root_dir, str(self.attr_list.iloc[idx, 0])+".png")
         image = Image.open(img_name).convert('RGB')
         attrs = self.attr_list.iloc[idx, 1:].values
@@ -44,4 +45,5 @@ transform_anime = transforms.Compose([
 
 path_data = '../dataset/data/'
 A_train_dataset = AttrDataset('./create_data/features.csv', path_data, transform_anime)
+print(pd.read_csv('./create_data/features.csv').head())
 train_loader = DataLoader(A_train_dataset, batch_size=64, num_workers=16, shuffle=True, drop_last=True)

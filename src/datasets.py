@@ -17,7 +17,10 @@ class AttrDataset(Dataset):
             root_dir (string): Directory with all the images.
             transform (callable, optional): Optional transform to be applied on a sample.
         """
-        self.attr_list = pd.read_csv(csv_file, sep=',')
+        try: 
+            self.attr_list = pd.read_csv(csv_file, sep=',')
+        except:
+            self.attr_list = pd.read_csv(csv_file, sep=',', skiprows=3)
         self.root_dir = root_dir
         self.transform = transform
 

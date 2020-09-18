@@ -87,7 +87,7 @@ def main():
             continue
 
         for step_i, (real_img, hair_tags, eye_tags) in enumerate(tqdm.tqdm(train_loader, desc='Inner Epoch Loop')):
-            print(step_i, (real_img, hair_tags, eye_tags))
+            
             real_label = torch.ones(batch_size).to(device)
             fake_label = torch.zeros(batch_size).to(device)
             soft_label = torch.Tensor(batch_size).uniform_(smooth, 1).to(device)

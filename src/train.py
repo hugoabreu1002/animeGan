@@ -34,8 +34,8 @@ def main():
     batch_size = args.batch_size
     iterations =  args.iterations
     device = 'cpu'
-    # if torch.cuda.is_available():
-    #     device = 'cuda'
+    if torch.cuda.is_available():
+        device = 'cuda'
     
     hair_classes, eye_classes = len(hair), len(eyes)
     num_classes = hair_classes + eye_classes

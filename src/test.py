@@ -27,8 +27,8 @@ def main():
     eye_classes = len(eye_mapping)
 
     device = 'cpu'
-    # if torch.cuda.is_available():
-    #     device = 'cuda'
+    if torch.cuda.is_available():
+        device = 'cuda'
 
     G = Generator(latent_dim, hair_classes + eye_classes)
     prev_state = torch.load(args.gen_model_dir)
